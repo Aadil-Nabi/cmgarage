@@ -1,4 +1,4 @@
-module github.com/Aadil-Nabi/CMgarage
+module github.com/Aadil-Nabi/cmgarage
 
 go 1.23.3
 
