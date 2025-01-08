@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/Aadil-Nabi/CMgarage/api"
+	"github.com/Aadil-Nabi/cmgarage/api"
 )
 
 func main() {

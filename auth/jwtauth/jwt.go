@@ -6,8 +6,8 @@ import (
 	"io"
 	"log"
 
-	"github.com/Aadil-Nabi/CMgarage/configs/envs"
-	"github.com/Aadil-Nabi/CMgarage/internal/pkg/cmhttpclient"
+	"github.com/Aadil-Nabi/cmgarage/configs/envs"
+	"github.com/Aadil-Nabi/cmgarage/internal/pkg/cmhttpclient"
 )
 
 // JWTData is a struct to store the key and values of JSON payload received after unmarshing.

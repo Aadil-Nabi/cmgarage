@@ -9,9 +9,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Aadil-Nabi/CMgarage/auth/jwtauth"
-	"github.com/Aadil-Nabi/CMgarage/configs/envs"
-	"github.com/Aadil-Nabi/CMgarage/internal/pkg/cmhttpclient"
+	"github.com/Aadil-Nabi/cmgarage/auth/jwtauth"
+	"github.com/Aadil-Nabi/cmgarage/configs/envs"
+	"github.com/Aadil-Nabi/cmgarage/internal/pkg/cmhttpclient"
 )
 
 // GetAuthDetails to get the Authentication details
