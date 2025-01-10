@@ -71,7 +71,7 @@ func getJwt() []byte {
 	// instead of http, use the client for the post request
 	resp, err := client.Post(url, "application/json", body)
 	if err != nil {
-		log.Fatalf("Can't post %s", err)
+		log.Fatalf("Error:  %s", err)
 	}
 	// close the response once the function execution is done.
 	defer resp.Body.Close()

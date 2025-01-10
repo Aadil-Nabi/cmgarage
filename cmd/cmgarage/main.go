@@ -13,6 +13,7 @@ func main() {
 
 	fmt.Println()
 
-	api.Encrypting()
+	// api.Encrypting()
+	api.ClusterStatus()
 
 }
