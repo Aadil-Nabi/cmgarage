@@ -15,5 +15,6 @@ func main() {
 
 	// api.Encrypting()
 	api.ClusterStatus()
+	api.DiskEncryptionStatus()
 
 }
