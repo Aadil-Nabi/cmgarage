@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"io"
 	"log"
-	"log/slog"
 	"net/http"
 	"time"
 
@@ -24,7 +23,7 @@ type Node struct {
 
 var nodes []Node
 
-func GetclusterErrors() {
+func GetclusterErrors() *[]Node {
 	// Get the Bearer Token
 	Bearer := jwt_details.Token_type + " " + jwt_details.Jwt
 
@@ -54,22 +53,31 @@ func GetclusterErrors() {
 		log.Fatal(err)
 	}
 
+	// if data received from CM is not nil/null, do the below operation
+	// if data_err != nil {
 	// var cmClusterStatus CMclusterErrStatus
 	err = json.Unmarshal(data_err, &nodes)
 	if err != nil {
 		log.Fatalf("Error %v", err)
 	}
 
-	errMessage := ""
-	for _, node := range nodes {
-		for _, err := range node.ClusterErrors {
-			errMessage = err.ErrorMessage
-		}
+	// 	errMessage := ""
+	// 	for _, node := range nodes {
+	// 		for _, err := range node.ClusterErrors {
+	// 			errMessage = err.ErrorMessage
+	// 		}
 
-		if !node.IsThisNode {
-			slog.Error("HA is Broken, Seems other nodes in cluster are DOWN")
-			slog.Error(errMessage)
-		}
-	}
+	// 		if !node.IsThisNode {
+	// 			slog.Error("HA is Broken, Seems other nodes in cluster are DOWN")
+	// 			slog.Error(errMessage)
+	// 		}
+	// 	}
+
+	// } else {
+	// 	fmt.Println("cluster data :", string(data_err))
+	// 	log.Println("No Error")
+	// }
+
+	return &nodes
 
 }

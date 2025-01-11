@@ -67,6 +67,19 @@ func ClusterStatus() {
 		slog.Info("Primary cluster node is UP and Running")
 	}
 
-	GetclusterErrors()
+	errMessage := ""
+
+	// GetclusterErrors function to check if cluster nodes are up or down
+	nodes := GetclusterErrors()
+	for _, node := range *nodes {
+		log.Println(node.IsThisNode)
+		for _, err := range node.ClusterErrors {
+			errMessage = err.ErrorMessage
+		}
+		if !node.IsThisNode {
+			slog.Error("HA is Broken, Seems other nodes in cluster are DOWN")
+			slog.Error(errMessage)
+		}
+	}
 
 }
