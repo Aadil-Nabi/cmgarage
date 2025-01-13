@@ -2,9 +2,9 @@ package cluster
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
-	"log/slog"
 	"net/http"
 
 	"github.com/Aadil-Nabi/cmgarage/auth/jwtauth"
@@ -65,7 +65,8 @@ func ClusterStatus() {
 
 	statusDescription := cmClusterInfo.Status.Description
 	if statusDescription == "ready" {
-		slog.Info("Primary cluster node is UP and Running")
+		fmt.Println("=>Primary cluster node is UP and Running")
+		// slog.Info("Primary cluster node is UP and Running")
 	}
 
 	errMessage := ""
@@ -73,13 +74,15 @@ func ClusterStatus() {
 	// GetclusterErrors function to check if cluster nodes are up or down
 	nodes := GetclusterErrors()
 	for _, node := range *nodes {
-		log.Println(node.IsThisNode)
+		// log.Println(node.IsThisNode)
+		fmt.Println("=>HA Status: ", node.IsThisNode)
 		for _, err := range node.ClusterErrors {
 			errMessage = err.ErrorMessage
 		}
 		if !node.IsThisNode {
-			slog.Error("HA is Broken, Seems other nodes in cluster are DOWN")
-			slog.Error(errMessage)
+			fmt.Println("=>HA is Broken, Seems other nodes in cluster are DOWN")
+			// slog.Error("HA is Broken, Seems other nodes in cluster are DOWN")
+			fmt.Println(errMessage)
 		}
 	}
 

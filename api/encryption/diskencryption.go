@@ -2,9 +2,9 @@ package encryption
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
-	"log/slog"
 	"net/http"
 
 	"github.com/Aadil-Nabi/cmgarage/auth/jwtauth"
@@ -58,6 +58,8 @@ func DiskEncryptionStatus() {
 
 	encStatus := diskEncryption.EncryptionStatus
 	if encStatus == "not encrypted" {
-		slog.Info("Disk is NOT Encrypted on the targeted node")
+		// slog.Info("Disk is NOT Encrypted on the targeted node")
+		fmt.Println("=>Disk is NOT Encrypted on the targeted node")
+
 	}
 }

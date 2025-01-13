@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/Aadil-Nabi/cmgarage/api/backups"
 	"github.com/Aadil-Nabi/cmgarage/api/cluster"
 	"github.com/Aadil-Nabi/cmgarage/api/encryption"
 )
@@ -17,8 +18,10 @@ func main() {
 	// Call APIs of CM
 
 	cluster.ClusterStatus()
-	encryption.Encrypting()
+	// encryption.Encrypting()
 	encryption.DiskEncryptionStatus()
+
+	backups.GetBackupStatus()
 
 	// time.Sleep(time.Millisecond * 500)
 
