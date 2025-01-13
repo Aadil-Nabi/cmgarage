@@ -1,4 +1,4 @@
-package api
+package encryption
 
 import (
 	"bytes"
@@ -10,41 +10,24 @@ import (
 	"net/http"
 
 	"github.com/Aadil-Nabi/cmgarage/auth/jwtauth"
-	"github.com/Aadil-Nabi/cmgarage/configs/envs"
+	"github.com/Aadil-Nabi/cmgarage/internal/config"
 	"github.com/Aadil-Nabi/cmgarage/internal/pkg/cmhttpclient"
 )
-
-// GetAuthDetails to get the Authentication details
-var token_details = jwtauth.GetAuthDetails()
-
-// token to store the token details
-var token = jwtauth.JWTData{
-	Jwt:              token_details.Jwt,
-	Duration:         token_details.Duration,
-	Token_type:       token_details.Token_type,
-	Client_id:        token_details.Client_id,
-	Refresh_token_id: token_details.Refresh_token_id,
-	Refresh_token:    token_details.Refresh_token,
-}
 
 // Encrypting method to encrypt the data using the provided key
 func Encrypting() {
 
-	jwt_token := token.Jwt
-	jwt_token_type := token.Token_type
+	jwt_details := jwtauth.GetAuthDetails()
+	bearer := jwt_details.Token_type + " " + jwt_details.Jwt
 
-	//Bearer
-	bearer := jwt_token_type + " " + jwt_token
-
-	url := "https://192.168.238.129/api/v1/crypto/encrypt"
-
-	envs := envs.GetEnvs()
+	configs := config.MustLoad()
+	url := configs.Base_Url + configs.Version + "/crypto/encrypt"
 
 	// Encode the data to be encrypted in base64 string as CM only accepts a valid base64 string
 	plaintext := "ksdnckjsbdhkcbsdkjncbkhsdbckjsfdvbfbvkjhjkbfvhbndfkjvbksjdncjksdvjkfbvh"
 	plaintext = base64.StdEncoding.EncodeToString([]byte(plaintext))
 	payload := map[string]string{
-		"id":        envs["ENCRYPTION_KEY"],
+		"id":        configs.Encryption_key,
 		"plaintext": plaintext,
 	}
 

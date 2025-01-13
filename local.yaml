@@ -1,0 +1,7 @@
+env: "dev"
+cm_secret:
+  base_url: "https://192.168.238.129/api/"
+  version: "v1"
+  cm_user: "admin"
+  cm_password: "Asdf@1234"
+  encryption_key: "cm17"

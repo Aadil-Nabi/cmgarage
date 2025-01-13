@@ -6,7 +6,7 @@ import (
 	"io"
 	"log"
 
-	"github.com/Aadil-Nabi/cmgarage/configs/envs"
+	"github.com/Aadil-Nabi/cmgarage/internal/config"
 	"github.com/Aadil-Nabi/cmgarage/internal/pkg/cmhttpclient"
 )
 
@@ -31,41 +31,32 @@ func GetAuthDetails() *JWTData {
 		log.Fatalf("cannot unmarshal the data %v", err)
 	}
 
-	// Store the JWT details in a JWTData struct
-	dat1 = JWTData{
-		Jwt:              dat1.Jwt,
-		Duration:         dat1.Duration,
-		Token_type:       dat1.Token_type,
-		Client_id:        dat1.Client_id,
-		Refresh_token_id: dat1.Refresh_token_id,
-		Refresh_token:    dat1.Refresh_token,
-	}
-
-	// fmt.Println(dat1)
-
 	return &dat1
 }
 
 func getJwt() []byte {
 
-	// Fetch the username and password from .env file
-	envs := envs.GetEnvs()
+	// Fetch the username and password from config.yaml file provide in the command line
+	configs := config.MustLoad()
 
 	// payload to be sent to get the JWT token
 	payload := map[string]string{
 		"grant_type": "password",
-		"username":   envs["CM_USER"],
-		"password":   envs["CM_PASSWORD"],
+		"username":   configs.Cm_user,
+		"password":   configs.Cm_password,
 		"token_type": "Bearer",
 	}
+
 	// Encode the jason payload
 	encodedBody, _ := json.Marshal(payload)
 
 	// convert the encoded JSON data to a type implemented by the io.Reader interface
 	body := bytes.NewBuffer(encodedBody)
 
-	url := "https://192.168.238.129/api/v1/auth/tokens"
+	// get the base url and version from the local.yaml file.
+	url := configs.Base_Url + configs.Version + "/auth/tokens"
 
+	// get the client to perform the Post operation
 	client := cmhttpclient.GetClient()
 
 	// instead of http, use the client for the post request

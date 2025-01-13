@@ -1,4 +1,4 @@
-package api
+package cluster
 
 import (
 	"encoding/json"
@@ -8,10 +8,9 @@ import (
 	"net/http"
 
 	"github.com/Aadil-Nabi/cmgarage/auth/jwtauth"
+	"github.com/Aadil-Nabi/cmgarage/internal/config"
 	"github.com/Aadil-Nabi/cmgarage/internal/pkg/cmhttpclient"
 )
-
-var jwt_details = jwtauth.GetAuthDetails()
 
 type CmClusterStatus struct {
 	Code        string
@@ -27,9 +26,11 @@ type CMclusterInfo struct {
 func ClusterStatus() {
 
 	// Get the Bearer Token
+	jwt_details := jwtauth.GetAuthDetails()
 	Bearer := jwt_details.Token_type + " " + jwt_details.Jwt
 
-	clusterInfoUrl := "https://192.168.238.129/api/v1/cluster"
+	configs := config.MustLoad()
+	clusterInfoUrl := configs.Base_Url + configs.Version + "/cluster"
 
 	// Create a new request for cluster info API
 	reqClusterInfo, err := http.NewRequest("GET", clusterInfoUrl, nil)

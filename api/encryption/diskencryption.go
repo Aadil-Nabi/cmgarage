@@ -1,4 +1,4 @@
-package api
+package encryption
 
 import (
 	"encoding/json"
@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	"github.com/Aadil-Nabi/cmgarage/auth/jwtauth"
+	"github.com/Aadil-Nabi/cmgarage/internal/config"
 	"github.com/Aadil-Nabi/cmgarage/internal/pkg/cmhttpclient"
 )
 
@@ -18,11 +19,12 @@ type DiskEncryption struct {
 }
 
 func DiskEncryptionStatus() {
-	url := "https://192.168.238.129/api/v1/locker/diskenc/status"
+	authDetails := jwtauth.GetAuthDetails()
 
-	jwt_auth := jwtauth.GetAuthDetails()
+	Bearer := authDetails.Token_type + " " + authDetails.Jwt
 
-	Bearer := jwt_auth.Token_type + " " + jwt_auth.Jwt
+	configs := config.MustLoad()
+	url := configs.Base_Url + configs.Version + "/locker/diskenc/status"
 
 	// Create a new GET request.
 	req, err := http.NewRequest("GET", url, nil)

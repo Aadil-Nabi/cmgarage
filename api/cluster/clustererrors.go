@@ -1,4 +1,4 @@
-package api
+package cluster
 
 import (
 	"encoding/json"
@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/Aadil-Nabi/cmgarage/auth/jwtauth"
+	"github.com/Aadil-Nabi/cmgarage/internal/config"
 	"github.com/Aadil-Nabi/cmgarage/internal/pkg/cmhttpclient"
 )
 
@@ -25,9 +27,12 @@ var nodes []Node
 
 func GetclusterErrors() *[]Node {
 	// Get the Bearer Token
+
+	jwt_details := jwtauth.GetAuthDetails()
 	Bearer := jwt_details.Token_type + " " + jwt_details.Jwt
 
-	clusterErrorUrl := "https://192.168.238.129/api/v1/cluster/errors"
+	configs := config.MustLoad()
+	clusterErrorUrl := configs.Base_Url + configs.Version + "/cluster/errors"
 
 	// Create a new request for cluster error API
 	reqErrorInfo, err := http.NewRequest("GET", clusterErrorUrl, nil)
@@ -53,30 +58,10 @@ func GetclusterErrors() *[]Node {
 		log.Fatal(err)
 	}
 
-	// if data received from CM is not nil/null, do the below operation
-	// if data_err != nil {
-	// var cmClusterStatus CMclusterErrStatus
 	err = json.Unmarshal(data_err, &nodes)
 	if err != nil {
 		log.Fatalf("Error %v", err)
 	}
-
-	// 	errMessage := ""
-	// 	for _, node := range nodes {
-	// 		for _, err := range node.ClusterErrors {
-	// 			errMessage = err.ErrorMessage
-	// 		}
-
-	// 		if !node.IsThisNode {
-	// 			slog.Error("HA is Broken, Seems other nodes in cluster are DOWN")
-	// 			slog.Error(errMessage)
-	// 		}
-	// 	}
-
-	// } else {
-	// 	fmt.Println("cluster data :", string(data_err))
-	// 	log.Println("No Error")
-	// }
 
 	return &nodes
 
