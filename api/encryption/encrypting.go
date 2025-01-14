@@ -24,7 +24,7 @@ func Encrypting() {
 	url := configs.Base_Url + configs.Version + "/crypto/encrypt"
 
 	// Encode the data to be encrypted in base64 string as CM only accepts a valid base64 string
-	plaintext := "ksdnckjsbdhkcbsdkjncbkhsdbckjsfdvbfbvkjhjkbfvhbndfkjvbksjdncjksdvjkfbvh"
+	plaintext := "Asdf@1234"
 	plaintext = base64.StdEncoding.EncodeToString([]byte(plaintext))
 	payload := map[string]string{
 		"id":        configs.Encryption_key,

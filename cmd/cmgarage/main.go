@@ -3,9 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/Aadil-Nabi/cmgarage/api/backups"
-	"github.com/Aadil-Nabi/cmgarage/api/cluster"
 	"github.com/Aadil-Nabi/cmgarage/api/encryption"
+	"github.com/Aadil-Nabi/cmgarage/internal/secrets"
 )
 
 func main() {
@@ -17,11 +16,13 @@ func main() {
 
 	// Call APIs of CM
 
-	cluster.ClusterStatus()
-	// encryption.Encrypting()
-	encryption.DiskEncryptionStatus()
+	// cluster.ClusterStatus()
+	encryption.Encrypting()
+	// encryption.DiskEncryptionStatus()
 
-	backups.GetBackupStatus()
+	// backups.GetBackupStatus()
+
+	secrets.Secrets()
 
 	// time.Sleep(time.Millisecond * 500)
 
