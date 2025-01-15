@@ -15,14 +15,45 @@ func main() {
 
 	fmt.Println()
 
-	// Call APIs of CM
+	// var wg sync.WaitGroup
 
-	cluster.ClusterStatus()
-	encryption.Encrypting()
+	// for i := 1; i <= 2; i++ {
+	// 	wg.Add(1)
+
+	// 	go func() {
+	// 		defer wg.Done()
+	// 		diskEncryptionStatus()
+	// 	}()
+
+	// 	go func() {
+	// 		defer wg.Done()
+	// 		cmBackupStatus()
+	// 	}()
+	// }
+
+	// wg.Wait()
+
 	encryption.DiskEncryptionStatus()
-
+	cluster.ClusterStatus()
 	backups.GetBackupStatus()
 
-	// time.Sleep(time.Millisecond * 500)
+	// encryption.DiskEncryptionStatus()
+	// cluster.ClusterStatus()
+	// backups.GetBackupStatus()
 
 }
+
+// func diskEncryptionStatus() {
+// 	encryption.DiskEncryptionStatus()
+
+// }
+
+// func cmClusterStatus() {
+// 	cluster.ClusterStatus()
+
+// }
+
+// func cmBackupStatus() {
+// 	backups.GetBackupStatus()
+
+// }
