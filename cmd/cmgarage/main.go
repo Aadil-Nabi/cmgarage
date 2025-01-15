@@ -34,6 +34,7 @@ func main() {
 	// wg.Wait()
 
 	encryption.DiskEncryptionStatus()
+	encryption.Encrypting()
 	cluster.ClusterStatus()
 	backups.GetBackupStatus()
 
