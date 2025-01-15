@@ -22,3 +22,6 @@
 
 # Ignore .env file
 .env
+
+# Ignore config.yaml file, which stores secrets
+config.yaml
