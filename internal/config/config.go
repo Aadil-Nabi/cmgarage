@@ -54,7 +54,7 @@ func getConfigPath() string {
 	flag.CommandLine = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 
 	if configPath == "" {
-		flags := flag.String("config", "", "place a config file path name")
+		flags := flag.String("configfile", "", "place a config file path name")
 		flag.Parse()
 
 		configPath = *flags

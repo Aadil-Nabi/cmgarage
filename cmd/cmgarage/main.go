@@ -37,10 +37,6 @@ func main() {
 	cluster.ClusterStatus()
 	backups.GetBackupStatus()
 
-	// encryption.DiskEncryptionStatus()
-	// cluster.ClusterStatus()
-	// backups.GetBackupStatus()
-
 }
 
 // func diskEncryptionStatus() {
