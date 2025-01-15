@@ -26,7 +26,6 @@
 # Ignore config.yaml file, which stores secrets
 config.yaml
 
-# Ignore ReadMe file
-ReadMe.md
-
+# Ignore ReadMe file from configurations
+README.md
 
