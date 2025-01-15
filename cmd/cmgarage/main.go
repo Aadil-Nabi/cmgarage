@@ -33,6 +33,7 @@ func main() {
 
 	// wg.Wait()
 
+	// CM APIS
 	encryption.DiskEncryptionStatus()
 	encryption.Encrypting()
 	cluster.ClusterStatus()
