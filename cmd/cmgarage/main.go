@@ -35,7 +35,7 @@ func main() {
 
 	// CM APIS
 	encryption.DiskEncryptionStatus()
-	encryption.Encrypting()
+	// encryption.Encrypting()
 	cluster.ClusterStatus()
 	backups.GetBackupStatus()
 
