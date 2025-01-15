@@ -10,7 +10,9 @@ Make sure you have go installed on your workstation and you can download the cod
 
 # Usage ▶
 To run the program you need to execute the run command in the below format
--  go run cmd/cmgarage/main.go -configfile config.yaml
+```bash
+go run cmd/cmgarage/main.go -configfile config.yaml
+```
 
 # Contributing 🤝
 Contributions, issues and feature requests are welcome, but it is paused for now.
