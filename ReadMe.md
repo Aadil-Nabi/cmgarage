@@ -1,1 +1,1 @@
-This is a Read me
+# Welcome to readme-md-generator 👋
