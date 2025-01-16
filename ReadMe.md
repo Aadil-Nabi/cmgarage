@@ -1,6 +1,7 @@
 # cmgarage
 # Welcome to cmgarage app 👋
-This is a small app to check the overall health of the below services on Thales CipherTrust Manager
+This is a small app to check the overall status of the below services on Thales CipherTrust Manager
+- Password Validation
 - Disk Encryption
 - Backup Status
 - Cluster Status
