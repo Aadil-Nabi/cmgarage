@@ -10,6 +10,16 @@ This is a small app to check the overall status of the below services on Thales 
 Make sure you have go installed on your workstation and you can download the code and use it directly on any IDE
 
 # Usage ▶
+* Create a config.yaml file, example as below
+```bash
+env: "dev"
+cm_secret:
+  base_url: "https://192.168.238.129/api/"
+  version: "v1"
+  cm_user: "admin"
+  cm_password: "ADggebwl@1234#^&"
+  encryption_key: "cm17"
+```
 To run the program you need to execute the run command in the below format
 ```bash
 go run cmd/cmgarage/main.go -configfile config.yaml
