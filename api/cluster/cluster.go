@@ -65,7 +65,7 @@ func ClusterStatus() {
 
 	statusDescription := cmClusterInfo.Status.Description
 	if statusDescription == "ready" {
-		fmt.Println("=>Primary cluster node is UP and Running")
+		fmt.Println("=> ✔ Primary cluster node is UP and Running.")
 		// slog.Info("Primary cluster node is UP and Running")
 	}
 
@@ -75,13 +75,13 @@ func ClusterStatus() {
 	nodes := GetclusterErrors()
 	for _, node := range *nodes {
 		// log.Println(node.IsThisNode)
-		fmt.Println("=>HA Status: ", node.IsThisNode)
+		fmt.Println("=> 🛑 HA Status: ", node.IsThisNode)
 		for _, err := range node.ClusterErrors {
 			errMessage = err.ErrorMessage
 		}
 		if !node.IsThisNode {
-			fmt.Println("=>HA is Broken, Seems other nodes in cluster are DOWN")
-			// slog.Error("HA is Broken, Seems other nodes in cluster are DOWN")
+			fmt.Println("=> 🛑 HA is Broken, Seems other nodes in cluster are DOWN.")
+			// slog.Error(" HA is Broken, Seems other nodes in cluster are DOWN")
 			fmt.Println(errMessage)
 		}
 	}

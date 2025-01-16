@@ -67,10 +67,10 @@ func GetBackupStatus() {
 	}
 
 	total_backups := backups.Total
-	fmt.Println("=>Total backups on system are: ", total_backups)
+	fmt.Println("=> Total backups on system are: ", total_backups)
 
 	for k, v := range backups.Resources {
-		fmt.Println(k, v.Status)
+		fmt.Println("✔", k, v.Status)
 	}
 
 }

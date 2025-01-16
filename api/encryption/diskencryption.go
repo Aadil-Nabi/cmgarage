@@ -59,7 +59,7 @@ func DiskEncryptionStatus() {
 	encStatus := diskEncryption.EncryptionStatus
 	if encStatus == "not encrypted" {
 		// slog.Info("Disk is NOT Encrypted on the targeted node")
-		fmt.Println("=>Disk is NOT Encrypted on the targeted node")
+		fmt.Println("=> 🛑 Disk is NOT Encrypted on the targeted node.")
 
 	}
 }
