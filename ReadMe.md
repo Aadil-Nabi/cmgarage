@@ -20,6 +20,9 @@ cm_secret:
   cm_user: "Your CipherTrust Manager Username"
   cm_password: "Your CipherTrust Manager User Password"
   encryption_key: "Your CM Encryption Key"
+akeyless_secret:
+  username: "Your Akeyless console email (https://console.akeyless.io/)"
+  password: "Your Akeyless console password"
 ```
 To run the program you need to execute the run command in the below format
 ```bash

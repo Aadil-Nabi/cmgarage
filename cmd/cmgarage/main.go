@@ -3,7 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/Aadil-Nabi/cmgarage/internal/secrets"
+	"github.com/Aadil-Nabi/cmgarage/api/backups"
+	"github.com/Aadil-Nabi/cmgarage/api/cluster"
+	"github.com/Aadil-Nabi/cmgarage/api/encryption"
+	"github.com/Aadil-Nabi/cmgarage/internal/validators"
 )
 
 func main() {
@@ -14,12 +17,10 @@ func main() {
 	fmt.Println()
 
 	// CM APIS
-	// validators.GetPasswordValidated()
-	// encryption.DiskEncryptionStatus()
-	// cluster.ClusterStatus()
-	// backups.GetBackupStatus()
-
-	password := secrets.GetSecrets()
-	fmt.Println(password["cm_pass"])
+	validators.GetPasswordValidated()
+	encryption.DiskEncryptionStatus()
+	cluster.ClusterStatus()
+	backups.GetBackupStatus()
+	fmt.Println("=> ✔ Closed Akeyless Vault Connection Successfully ")
 
 }

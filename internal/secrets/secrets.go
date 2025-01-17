@@ -5,6 +5,7 @@ import (
 	"errors"
 	"log"
 
+	"github.com/Aadil-Nabi/cmgarage/internal/config"
 	"github.com/akeylesslabs/akeyless-go/v4"
 )
 
@@ -27,9 +28,14 @@ func GetSecrets() map[string]interface{} {
 		},
 	}).V2Api
 
+	// Load configuartions from the config.yaml file
+	configs := config.MustLoad()
+	email := configs.AkeylessUsername
+	password := configs.AkeylessPassword
+
 	authBody := akeyless.NewAuthWithDefaults()
-	authBody.AdminEmail = akeyless.PtrString("aadil.nabi@thalesgroup.com")
-	authBody.AdminPassword = akeyless.PtrString("Welcome@1234567#")
+	authBody.AdminEmail = akeyless.PtrString(email)
+	authBody.AdminPassword = akeyless.PtrString(password)
 
 	var apiErr akeyless.GenericOpenAPIError
 

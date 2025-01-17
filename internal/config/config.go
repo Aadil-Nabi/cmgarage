@@ -16,9 +16,15 @@ type CM_secrets struct {
 	Encryption_key string `yaml:"encryption_key"`
 }
 
+type AKeyless_secrets struct {
+	AkeylessUsername string `yaml:"username"`
+	AkeylessPassword string `yaml:"password"`
+}
+
 type Config struct {
-	Env        string `yaml:"env"`
-	CM_secrets `yaml:"cm_secret"`
+	Env              string `yaml:"env"`
+	CM_secrets       `yaml:"cm_secret"`
+	AKeyless_secrets `yaml:"akeyless_secret"`
 }
 
 // MustLoad function reads the file, loads the data and store the fields in the Config struct

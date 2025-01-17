@@ -8,6 +8,7 @@ import (
 
 	"github.com/Aadil-Nabi/cmgarage/internal/config"
 	"github.com/Aadil-Nabi/cmgarage/internal/pkg/cmhttpclient"
+	"github.com/Aadil-Nabi/cmgarage/internal/secrets"
 )
 
 // JWTData is a struct to store the key and values of JSON payload received after unmarshing.
@@ -39,11 +40,17 @@ func getJwt() []byte {
 	// Fetch the username and password from config.yaml file provide in the command line
 	configs := config.MustLoad()
 
+	// Get Secrets from the AKeyless account, here we fect the CM Password from the the AKeyless vault.
+	// We can get the password from the config.yaml file, but we are fecthing the CM Password from the AKeyless Vault
+	secrets := secrets.GetSecrets()
+	cm_password := secrets["cm_pass"]
+	cm_passwd := cm_password.(string) // this interface value is converted into string using "type assertion"
+
 	// payload to be sent to get the JWT token
 	payload := map[string]string{
 		"grant_type": "password",
 		"username":   configs.Cm_user,
-		"password":   configs.Cm_password,
+		"password":   cm_passwd,
 		"token_type": "Bearer",
 	}
 
